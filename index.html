@@ -2,8 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE DIABLO REPORT | SYSTEM ERROR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>THE DIABLO REPORT | SYSTEM ERROR</title>
     <style>
         :root {
             --primary: #ff003c; /* Cyberpunk červená */
@@ -20,9 +19,10 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* CRT SCANLINE OVERLAY - Efekt starého monitoru */
+        /* CRT SCANLINE OVERLAY */
         body::before {
             content: " ";
             display: block;
@@ -37,7 +37,7 @@
             pointer-events: none;
         }
 
-        /* GLITCH HEADER ANIMATION */
+        /* GLITCH HEADER */
         .glitch-wrapper {
             text-align: center;
             padding: 40px 20px;
@@ -51,31 +51,57 @@
             font-weight: bold;
             text-transform: uppercase;
             position: relative;
-            text-shadow: 0.05em 0 0 var(--secondary), -0.03em -0.04em 0 var(--primary),
-            0.025em 0.04em 0 #d9ff00;
+            text-shadow: 0.05em 0 0 var(--secondary), -0.03em -0.04em 0 var(--primary), 0.025em 0.04em 0 #d9ff00;
             animation: glitch 725ms infinite;
             margin: 0;
             color: white;
             letter-spacing: 5px;
+            word-wrap: break-word; /* Zalamovanie na mobile */
         }
 
-        h1.glitch span {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
+        h1.glitch span { position: absolute; top: 0; left: 0; }
 
         @keyframes glitch {
             0% { text-shadow: 0.05em 0 0 var(--secondary), -0.03em -0.04em 0 var(--primary), 0.025em 0.04em 0 #d9ff00; }
             15% { text-shadow: 0.05em 0 0 var(--secondary), -0.03em -0.04em 0 var(--primary), 0.025em 0.04em 0 #d9ff00; }
-            16% { text-shadow: -0.05em -0.025em 0 var(--secondary), 0.025em 0.035em 0 var(--primary), -0.05em -0.05em 0 #d9ff00; }
             49% { text-shadow: -0.05em -0.025em 0 var(--secondary), 0.025em 0.035em 0 var(--primary), -0.05em -0.05em 0 #d9ff00; }
             50% { text-shadow: 0.05em 0.035em 0 var(--secondary), 0.03em 0 0 var(--primary), 0 -0.04em 0 #d9ff00; }
             99% { text-shadow: 0.05em 0.035em 0 var(--secondary), 0.03em 0 0 var(--primary), 0 -0.04em 0 #d9ff00; }
             100% { text-shadow: -0.05em 0 0 var(--secondary), -0.025em -0.04em 0 var(--primary), -0.04em -0.025em 0 #d9ff00; }
         }
 
-        /* TICKER - Běžící text */
+        /* NAVIGATION MENU */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            flex-wrap: wrap; /* Aby sa tlačidlá zalamovali */
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--text-main);
+            color: var(--text-main);
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary);
+            color: black;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* TICKER */
         .ticker-wrap {
             background: var(--primary);
             width: 100%;
@@ -103,7 +129,7 @@
             padding: 20px;
         }
 
-        /* ARTICLE ANIMATIONS */
+        /* ANIMATIONS */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -120,6 +146,7 @@
             padding-left: 15px;
             margin-top: 40px;
             text-transform: uppercase;
+            word-wrap: break-word;
         }
 
         /* DOCUMENT STYLE */
@@ -132,76 +159,13 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
             position: relative;
             transform: rotate(-1deg);
-            opacity: 0;
         }
 
-        .secret-document.revealed {
-            animation: stamp-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            opacity: 1;
-        }
-
-        @keyframes stamp-in {
-            0% { transform: scale(1.5) rotate(5deg); opacity: 0; }
-            100% { transform: scale(1) rotate(-1deg); opacity: 1; }
-        }
-
-        .stamp {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            border: 5px solid #d00;
-            color: #d00;
-            font-size: 2rem;
-            font-weight: bold;
-            padding: 10px;
-            text-transform: uppercase;
-            transform: rotate(-15deg);
-            opacity: 0;
-            mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
-        }
-
-        .secret-document.revealed .stamp {
-            animation: stamp-appear 0.5s 1s forwards;
-        }
-
-        @keyframes stamp-appear {
-            0% { transform: scale(2) rotate(-15deg); opacity: 0; }
-            100% { transform: scale(1) rotate(-15deg); opacity: 0.7; }
-        }
-
-        /* CONTACT GLOW */
-        .contact-box {
-            border: 2px solid var(--primary);
-            padding: 20px;
-            text-align: center;
-            margin-top: 60px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-box::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 0, 60, 0.2), transparent);
-            animation: sweep 3s infinite;
-        }
-
-        @keyframes sweep {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .contact-box h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        /* IMAGE STYLING */
+        /* IMAGE STYLING (UPDATED FOR MOBILE) */
         .poster-image {
-            width: 100%;
-            max-width: 350px;
+            width: 100%; /* Plná šírka na mobile */
+            max-width: 350px; /* Maximálne 350px na PC */
+            height: auto; /* Zachová pomer strán */
             display: block;
             margin: 20px auto 30px auto;
             border: 2px solid var(--text-main);
@@ -215,13 +179,88 @@
             box-shadow: 0 0 30px rgba(255, 0, 60, 0.3);
         }
 
+        /* GALLERY GRID STYLES */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border: 2px solid #333;
+            filter: grayscale(100%) contrast(1.2);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            filter: grayscale(0%) contrast(1);
+            border-color: var(--secondary);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            z-index: 10;
+        }
+
+        /* VIEW CONTROLS */
+        .view-section {
+            display: none;
+        }
+        .view-section.active-view {
+            display: block;
+            animation: fadeInView 0.5s ease-in;
+        }
+
+        @keyframes fadeInView {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-box {
+            border: 2px solid var(--primary);
+            padding: 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .contact-box h3 { color: var(--primary); }
+
+        /* VÝRAZNÝ BOX PRE TEXT */
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 20px; 
+            border-left: 3px solid var(--secondary); 
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* --- MOBILE MEDIA QUERY (DÔLEŽITÉ PRE TELEFÓNY) --- */
+        @media (max-width: 600px) {
+            h1.glitch { font-size: 1.8rem; letter-spacing: 2px; }
+            
+            .container { padding: 15px; }
+            
+            h2 { font-size: 1.5rem; margin-top: 30px; }
+            
+            /* Navigácia pod sebou pre ľahšie klikanie */
+            .nav-menu { gap: 10px; flex-direction: column; }
+            .nav-btn { width: 100%; box-sizing: border-box; text-align: center; }
+
+            /* Dokument bez rotácie na malom displeji */
+            .secret-document { padding: 20px; transform: none; margin: 20px 0; }
+            
+            /* Galéria jedna pod druhou */
+            .gallery-grid { grid-template-columns: 1fr; } 
+        }
+
     </style>
 </head>
 <body>
 
     <div class="glitch-wrapper">
         <h1 class="glitch" data-text="THE DIABLO REPORT">THE DIABLO REPORT</h1>
-        <p style="color: var(--primary); letter-spacing: 3px;">/// DEKÓDOVÁNÍ PRAVDY ///</p>
+        <p style="color: var(--primary); letter-spacing: 3px; font-size: 0.8rem;">/// DEKÓDOVÁNÍ PRAVDY ///</p>
     </div>
 
     <div class="ticker-wrap">
@@ -230,130 +269,138 @@
         </div>
     </div>
 
+    <nav class="nav-menu">
+        <button class="nav-btn active" onclick="switchView('news', this)">[ REPORTY ]</button>
+        <button class="nav-btn" onclick="switchView('gallery', this)">[ GALERIE DŮKAZŮ ]</button>
+    </nav>
+
     <div class="container">
         
-        <article>
-            <div class="fade-in">
-                <h2>ODHALENÍ: PROČ MUSEL STAFF-1 ODEJÍT?</h2>
-                <p style="border-left: 2px solid white; padding-left: 10px; font-style: italic;">
-                    Datum: 02.01.2026 | Stav: <span style="color:red; font-weight:bold;">ODTAJNĚNO</span>
-                </p>
+        <div id="view-news" class="view-section active-view">
+            
+            <article>
+                <div class="fade-in">
+                    <h2>ODHALENÍ: PROČ MUSEL STAFF-1 ODEJÍT?</h2>
+                    <p style="border-left: 2px solid white; padding-left: 10px; font-style: italic;">
+                        Datum: 02.01.2026 | Stav: <span style="color:red; font-weight:bold;">ODTAJNĚNO</span>
+                    </p>
+                    <p class="lead">
+                        Oficiální verze je lež. Mluvili o "administrativních změnách". Lhali vám do očí. Skutečným důvodem pádu šéfa LSPD je tento dokument, který držíte v rukou.
+                    </p>
+                </div>
 
-                <p class="lead">
-                    Oficiální verze je lež. Mluvili o "administrativních změnách". Lhali vám do očí. Skutečným důvodem pádu šéfa LSPD je tento dokument, který držíte v rukou.
-                </p>
-                <p>
-                    28. prosince 2025 došlo k incidentu, který ukázal pravou tvář našeho systému. Rasové profilování. Zneužití moci. Arogance. Když jsem podal stížnost, město zpanikařilo. Odvolali ho, aby zakryli stopy. 
-                    <strong>Ale klientovi nezaplatili ani cent.</strong>
-                </p>
-            </div>
+                <div class="secret-document fade-in">
+                    <div style="border: 3px solid #d00; color: #d00; display:inline-block; padding:5px; font-weight:bold; transform: rotate(-5deg); margin-bottom:10px;">DŮKAZ #205</div>
+                    <p>
+                    <strong>ADRESÁT:</strong> Department of Justice<br>
+                    <strong>DATUM:</strong> 28.12.2025<br>
+                    <strong>VĚC:</strong> <span style="background:black; color:white; padding: 0 5px; line-height: 1.4; display: inline; box-decoration-break: clone; -webkit-box-decoration-break: clone;">STÍŽNOST NA ZNEUŽITÍ PRAVOMOCI, PODEZŘENÍ NA RASOVÉ PROFILOVÁNÍ A NÁVRH NA MIMOSOUDNÍ VYROVNÁNÍ</span></p>
+                    <hr style="border-top: 1px dashed black;">
+                    
+                    <p><strong>I. SKUTKOVÉ OKOLNOSTI A KONTEXT</strong><br>
+                    Dne 28.12.2025 v čase 15:50-16:00 byla vykonávána přepravní služba pro skupinu osob směřující do oblasti Downtown / South Central. Složení posádky tvořily převážně osoby jiné než bílé pleti.</p>
+                    <p>Během kontroly Chief of Police sankcionoval řidiče za údajné porušení CVC § 12500 a nařídil okamžité odtažení vozidla. Tento postup byl zvolen navzdory tomu, že šlo o administrativní přestupek (zapomenutý doklad), u kterého zákon nevyžaduje zajištění vozidla.</p>
 
-            <div class="secret-document fade-in">
-                <div class="stamp">DŮKAZ #205</div>
-                <p>
-                <strong>ADRESÁT:</strong> Department of Justice<br>
-                <strong>DATUM:</strong> 28.12.2025<br>
-                <strong>VĚC:</strong> <span style="background:black; color:white; padding: 0 5px;">STÍŽNOST NA ZNEUŽITÍ PRAVOMOCI, PODEZŘENÍ NA RASOVÉ PROFILOVÁNÍ A NÁVRH NA MIMOSOUDNÍ VYROVNÁNÍ</span></p>
-                <hr style="border-top: 1px dashed black;">
-                <p><strong>I. SKUTKOVÉ OKOLNOSTI A KONTEXT</strong><br>
-                Dne 28.12.2025 v čase 15:50-16:00 byla vykonávána přepravní služba pro skupinu osob směřující do oblasti Downtown / South Central. Složení posádky tvořily převážně osoby jiné než bílé pleti.</p>
+                    <p><strong>II. DŮVODNÉ PODEZŘENÍ Z NEROVNÉHO ZACHÁZENÍ</strong><br>
+                    Okolnosti zásahu vyvolávají silné podezření z tzv. „Implicit Bias“ nebo rasového profilování. Je nutné položit si otázku: Uplatnil by Chief of Police stejně drakonický postup, kdyby se ve vozidle nacházely osoby z majoritní populace v oblasti Vinewood?</p>
+
+                    <p><strong>III. ODŮVODNĚNÍ VÝŠE ODŠKODNÉHO</strong><br>
+                    Vzhledem ke společenské nebezpečnosti takového jednání je vyčíslen nárok na celkové vyrovnání v sumě <strong>100 000 USD</strong>. Tato částka odráží materiální škodu, ztrátu důvěry klientů a sankční složku.</p>
+
+                    <p><strong>IV. NÁVRH NA ŘEŠENÍ</strong><br>
+                    Navrhuje se uzavření věci za těchto podmínek:<br>
+                    1. Administrativní náprava (výmaz záznamu).<br>
+                    2. Finanční kompenzace: Vyplacení sumy 100 000 USD.</p>
+                </div>
+            </article>
+
+            <article class="fade-in" style="margin-top: 60px; padding-top: 40px; border-top: 4px dashed var(--primary);">
+                <div style="background: var(--primary); color: black; display: inline-block; padding: 5px 10px; font-weight: bold; margin-bottom: 15px;">HLAS ULICE</div>
+                <h2>POMÁHAT A CHRÁNIT? SPÍŠ BUZEROVAT A MLÁTIT!</h2>
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/YzgHj03WuPyK.png" class="poster-image" alt="Benjamin Wallace">
+                <p>Policie v tomto městě zapomněla, komu má sloužit. Heslo "Pomáhat a chránit" je už jen prázdná samolepka na kapotě jejich drahých aut. Oni nejsou zákon. Oni jsou jen ozbrojený gang placený z našich daní.</p>
+            </article>
+
+            <article class="fade-in" style="margin-top: 60px; padding-top: 40px; border-top: 4px dashed var(--secondary);">
+                <div style="background: var(--secondary); color: black; display: inline-block; padding: 5px 10px; font-weight: bold; margin-bottom: 15px;">PŘÍBĚH ČTENÁŘE</div>
+                <h2>LSPD NÁS NECHRÁNÍ. JSME PRO NĚ JEN CHODÍCÍ PENĚŽENKY.</h2>
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/85vRhI4tEAxv.png" class="poster-image" alt="Policejní kontrola">
+                <p>Místo toho, aby letěl zachránit parťáka (Panic Button), stál u mého okýnka a dál řešil pokutu. Přednější mu bylo vytáhnout ze mě pár stovek, než zachránit život policajta. Jestli nechají ve štychu svého, co udělají vám?</p>
+            </article>
+
+            <article class="fade-in" style="margin-top: 80px; padding-top: 40px; border-top: 4px dashed var(--primary);">
+            
+                <div style="background: var(--primary); color: black; display: inline-block; padding: 5px 10px; font-weight: bold; margin-bottom: 15px;">
+                    POLITICKÝ KOMENTÁŘ
+                </div>
+    
+                <h2>PAPÍR SNESE VŠECHNO: GUVERNÉR BÁSNÍ O ZÁKONECH, ALE REALITA JE POLICEJNÍ STÁT</h2>
                 
-                <p>Během kontroly Chief of Police sankcionoval řidiče za údajné porušení CVC § 12500 a nařídil okamžité odtažení vozidla. Tento postup byl zvolen navzdory tomu, že šlo o administrativní přestupek (zapomenutý doklad), u kterého zákon nevyžaduje zajištění vozidla.</p>
-
-                <p><strong>II. DŮVODNÉ PODEZŘENÍ Z NEROVNÉHO ZACHÁZENÍ</strong><br>
-                Okolnosti zásahu vyvolávají silné podezření z tzv. „Implicit Bias“ nebo rasového profilování. Je nutné položit si otázku: Uplatnil by Chief of Police stejně drakonický postup, kdyby se ve vozidle nacházely osoby z majoritní populace v oblasti Vinewood?</p>
-
-                <p><strong>III. ODŮVODNĚNÍ VÝŠE ODŠKODNÉHO</strong><br>
-                Vzhledem ke společenské nebezpečnosti takového jednání je vyčíslen nárok na celkové vyrovnání v sumě <strong>100 000 USD</strong>. Tato částka odráží materiální škodu, ztrátu důvěry klientů a sankční složku.</p>
-
-                <p><strong>IV. NÁVRH NA ŘEŠENÍ</strong><br>
-                Navrhuje se uzavření věci za těchto podmínek:<br>
-                1. Administrativní náprava (výmaz záznamu).<br>
-                2. Finanční kompenzace: Vyplacení sumy 100 000 USD.</p>
-            </div>
-
-            <div class="fade-in">
-                <p>
-                    Šéf policie skončil. To je naše první vítězství. Ale systém nám stále dluží 100 000 dolarů a omluvu. 
-                    Nenecháme to tak. Pokud systém nefunguje pro nás, změníme ho.
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 20px;">
+                    Autor: Občan, kterého nebaví mlčet | Čtení: 4 min
                 </p>
+    
+                <p class="lead" style="color: white;">
+                    Přečetl jsem si ta velkolepá slova našeho nového guvernéra Raymonda Reddingtona. Píše o "důvěře", o "spolupráci" a hlavně o tom, jak je "California Law závazné pro všechny".
+                </p>
+                <p>
+                    Když to čtete, zní to hezky. Skoro jako bychom žili ve svobodné zemi. Ale pak se podíváte z okna a dojde vám, že realita je úplně jinde.
+                </p>
+    
+                <p>
+                    Pan Reddington zapomněl na jednu "drobnost". <strong>Nikdo z nás ho nevolil.</strong>
+                    Všimli jste si? Nebyly žádné volby. Nebyla žádná kampaň. Prostě se jednoho dne otevřely dveře a byl nám oznámen nový vládce. Bez našeho souhlasu.
+                </p>
+                
+                <p style="font-weight: bold; color: var(--primary); margin-top: 20px;">
+                    Státní složky? Ne, soukromá armáda.
+                </p>
+                
+                <p>
+                    Reddington tvrdí, že zákony platí pro všechny, včetně státních složek. To je ten největší vtip, jaký jsem letos slyšel.
+                    Každý, kdo v tomhle městě žije déle než týden, ví, jak to funguje:
+                </p>
+    
+                <div class="highlight-box">
+                    <p><strong>Pro nás (obyčejné lidi):</strong> Platí každý paragraf, každá vyhláška, každá nesmyslná buzerace. Když uděláte chybu, systém vás sešrotuje. Pokuty, vězení, zabavování majetku.</p>
+                    <p style="margin-top: 15px; color: var(--secondary); font-weight: bold;">Pro ně (státní složky): Neplatí nic.</p>
+                </div>
+    
+                <p>
+                    Podívejte se na policii, na úředníky, na celou tu státní mašinerii. Chovají se k nám jako k dobytku.
+                    Policie už dávno "nepomáhá a nechrání". Fungují jako výběrčí daní v uniformách. Jsou arogantní, agresivní a mají pocit naprosté nadřazenosti. Proč? Protože vědí, že v tomhle systému jsou nedotknutelní.
+                </p>
+    
+                <h3>Systém jde proti lidem</h3>
+                <p>
+                    Celé to nastavení "nového" San Andreas má jediný cíl: Kontrolu.
+                    Nejde jim o vaše bezpečí. Jde jim o to, abyste byli poslušní, platili a na nic se neptali. Vytvořili policejní stát, kde má občan jen povinnosti a státní složky jen práva.
+                </p>
+    
+                <p>
+                    Guvernér Reddington může psát o "zvyšování důvěry", jak chce. Ale důvěru si nevynutíte silou ani ji nezískáte podvodem.
+                    Dokud nám budou vládnout lidé, které jsme nevolili, a dokud nás budou v ulicích šikanovat složky, které stojí nad zákonem, jsou ta jeho slova jen prázdný blábol.
+                </p>
+    
+                <p style="font-size: 1.2rem; font-weight: bold; border-bottom: 2px solid white; display: inline-block; padding-bottom: 5px; margin-top: 20px;">
+                    Nejsme občané. Jsme poddaní. A dokud si to neuvědomíme, nic se nezmění.
+                </p>
+    
+            </article>
+
+        </div>
+
+        <div id="view-gallery" class="view-section">
+            <h2 style="border-color: var(--secondary); color: var(--secondary);">/// ARCHIV DŮKAZŮ ///</h2>
+            <p>Fotodokumentace policejní šikany a života v ulicích.</p>
+            
+            <div class="gallery-grid">
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/4LubKmtYXGm2.webp" class="gallery-item" alt="Důkaz 1">
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/rHRh3Q3gWx57.png" class="gallery-item" alt="Důkaz 2">
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/AgwdoKFwomk1.png" class="gallery-item" alt="Důkaz 3">
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/LunxUuHvKgqs.webp" class="gallery-item" alt="Důkaz 4">
             </div>
-        </article>
-
-        <article class="fade-in" style="margin-top: 80px; padding-top: 40px; border-top: 4px dashed var(--primary);">
-            
-            <div style="background: var(--primary); color: black; display: inline-block; padding: 5px 10px; font-weight: bold; margin-bottom: 15px;">
-                HLAS ULICE / ANONYM
-            </div>
-
-            <h2>POMÁHAT A CHRÁNIT? SPÍŠ BUZEROVAT A MLÁTIT!</h2>
-            
-            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 20px;">
-                Autor: Oči Ulice / Hlas Svědomí | Čtení: 2 min
-            </p>
-
-            <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/YzgHj03WuPyK.png" class="poster-image" alt="Benjamin Wallace s vlajkou USA">
-
-            <p class="lead" style="color: white; font-style: italic;">
-                "Podívejte se do zpětného zrcátka. Vidíte ty majáky? Cítíte ten pocit bezpečí? Ani náhodou. Cítíte strach. A přesně to oni chtějí."
-            </p>
-
-            <p>
-                Policie v tomto městě zapomněla, komu má sloužit. Heslo "Pomáhat a chránit" je už jen prázdná samolepka na kapotě jejich drahých aut, která jsme jim zaplatili my.
-            </p>
-
-            <p>
-                <strong>Realita na ulici:</strong> Když vás někdo přepadne, sepíšou papír a odloží ho do šuplíku. Ale zkuste přejet na červenou, nebo se na ně "špatně podívat". To najednou vidíte tu aktivitu. To najednou fungují obušky, tasery a pouta.
-            </p>
-        </article>
-
-        <article class="fade-in" style="margin-top: 80px; padding-top: 40px; border-top: 4px dashed var(--secondary);">
-            
-            <div style="background: var(--secondary); color: black; display: inline-block; padding: 5px 10px; font-weight: bold; margin-bottom: 15px;">
-                PŘÍBĚH ČTENÁŘE
-            </div>
-
-            <h2>LSPD NÁS NECHRÁNÍ. JSME PRO NĚ JEN CHODÍCÍ PENĚŽENKY.</h2>
-            
-            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 20px;">
-                Autor: Jeden z vás | Čtení: 3 min
-            </p>
-
-            <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/85vRhI4tEAxv.png" class="poster-image" alt="Policejní kontrola 1007">
-
-            <p class="lead" style="color: white;">
-                Všude mají napsané „Pomáhat a chránit“. Vypadá to hezky, že? Ale realita? Dneska mi došlo, že je to jen reklamní slogan. LSPD nás nechrání. LSPD nás jen kasíruje.
-            </p>
-
-            <p>
-                <strong>Důkaz? Dnešní zážitek s důstojníkem číslo 1007.</strong><br>
-                Zastavil mě za rychlost. Fajn, beru. Ale během kontroly mu začala řvát vysílačka. Panic Button. Někde tam venku šlo jeho kolegovi o život. Někdo z jejich "rodiny" potřeboval okamžitou pomoc.
-            </p>
-
-            <p style="font-size: 1.1rem; color: var(--primary); font-weight: bold; border-left: 3px solid var(--primary); padding-left: 15px;">
-                A co udělal náš slavný ochránce 1007? Ani se nehnul.
-            </p>
-
-            <p>
-                Místo toho, aby letěl zachránit parťáka, stál u mého okýnka a dál řešil pokutu. Chápete to? Přednější mu bylo vytáhnout ze mě pár stovek do městské kasy, než zachránit život policajta.
-            </p>
-
-            <p>
-                <em>A teď se zamyslete:</em><br>
-                Jestli jsou schopní nechat ve štychu vlastního člověka jen proto, aby vybrali pokutu... myslíte si, že ochrání VÁS?
-                Až vás někdo přepadne, až vám půjde o krk – myslíte, že přijedou? Nebo budou radši někde měřit rychlost a vybírat výpalné, protože to sype víc?
-            </p>
-
-            <p>
-                Dneska mi to došlo. V tomhle městě jsme v tom sami. Policii nezajímá naše bezpečí, a už vůbec ne spravedlnost. Zajímá je jen to, aby na konci směny odevzdali balík peněz z pokut.
-            </p>
-
-            <p>
-                <strong>Číslo 1007 mi dneska ukázalo pravou tvář systému.</strong> Není to policie. Je to jen ozbrojená úřednická četa.
-                Dávejte na sebe pozor sami, lidi. Na tyhle se spolehnout nedá.
-            </p>
-
-        </article>
+        </div>
 
         <div class="contact-box fade-in">
             <h3>PŘIDEJ SE K ODPORU</h3>
@@ -366,27 +413,25 @@
     </div>
 
     <script>
+        // FUNKCIA NA PREPÍNANIE ZOBRAZENIA
+        function switchView(viewName, btn) {
+            // Skryť všetko
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active-view'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+
+            // Zobraziť vybrané
+            document.getElementById('view-' + viewName).classList.add('active-view');
+            btn.classList.add('active');
+        }
+
         // Skript pro animace při skrolování
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    if(entry.target.classList.contains('secret-document')) {
-                        entry.target.classList.add('revealed');
-                    }
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
         });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
