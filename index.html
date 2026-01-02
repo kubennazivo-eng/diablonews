@@ -56,7 +56,7 @@
             margin: 0;
             color: white;
             letter-spacing: 5px;
-            word-wrap: break-word; /* Zalamovanie na mobile */
+            word-wrap: break-word;
         }
 
         h1.glitch span { position: absolute; top: 0; left: 0; }
@@ -78,7 +78,7 @@
             margin: 20px 0;
             padding-bottom: 20px;
             border-bottom: 1px solid #333;
-            flex-wrap: wrap; /* Aby sa tlačidlá zalamovali */
+            flex-wrap: wrap;
         }
 
         .nav-btn {
@@ -161,11 +161,11 @@
             transform: rotate(-1deg);
         }
 
-        /* IMAGE STYLING (UPDATED FOR MOBILE) */
+        /* IMAGE STYLING */
         .poster-image {
-            width: 100%; /* Plná šírka na mobile */
-            max-width: 350px; /* Maximálne 350px na PC */
-            height: auto; /* Zachová pomer strán */
+            width: 100%;
+            max-width: 350px;
+            height: auto;
             display: block;
             margin: 20px auto 30px auto;
             border: 2px solid var(--text-main);
@@ -235,22 +235,14 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* --- MOBILE MEDIA QUERY (DÔLEŽITÉ PRE TELEFÓNY) --- */
+        /* MEDIA QUERIES PRE MOBILY */
         @media (max-width: 600px) {
             h1.glitch { font-size: 1.8rem; letter-spacing: 2px; }
-            
             .container { padding: 15px; }
-            
             h2 { font-size: 1.5rem; margin-top: 30px; }
-            
-            /* Navigácia pod sebou pre ľahšie klikanie */
             .nav-menu { gap: 10px; flex-direction: column; }
             .nav-btn { width: 100%; box-sizing: border-box; text-align: center; }
-
-            /* Dokument bez rotácie na malom displeji */
             .secret-document { padding: 20px; transform: none; margin: 20px 0; }
-            
-            /* Galéria jedna pod druhou */
             .gallery-grid { grid-template-columns: 1fr; } 
         }
 
@@ -324,8 +316,44 @@
             <article class="fade-in" style="margin-top: 60px; padding-top: 40px; border-top: 4px dashed var(--secondary);">
                 <div style="background: var(--secondary); color: black; display: inline-block; padding: 5px 10px; font-weight: bold; margin-bottom: 15px;">PŘÍBĚH ČTENÁŘE</div>
                 <h2>LSPD NÁS NECHRÁNÍ. JSME PRO NĚ JEN CHODÍCÍ PENĚŽENKY.</h2>
-                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/85vRhI4tEAxv.png" class="poster-image" alt="Policejní kontrola">
-                <p>Místo toho, aby letěl zachránit parťáka (Panic Button), stál u mého okýnka a dál řešil pokutu. Přednější mu bylo vytáhnout ze mě pár stovek, než zachránit život policajta. Jestli nechají ve štychu svého, co udělají vám?</p>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 20px;">
+                    Autor: Jeden z vás | Čtení: 3 min
+                </p>
+                <img src="https://r2.fivemanage.com/ITfLP6A8ZmjEvfmKPq1cU/85vRhI4tEAxv.png" class="poster-image" alt="Policejní kontrola 1007">
+                
+                <p class="lead" style="color: white;">
+                    Všude mají napsané „Pomáhat a chránit“. Vypadá to hezky, že? Ale realita? Dneska mi došlo, že je to jen reklamní slogan. LSPD nás nechrání. LSPD nás jen kasíruje.
+                </p>
+
+                <p>
+                    <strong>Důkaz? Dnešní zážitek s důstojníkem číslo 1007.</strong><br>
+                    Zastavil mě za rychlost. Fajn, beru. Ale během kontroly mu začala řvát vysílačka. Panic Button. Někde tam venku šlo jeho kolegovi o život. Někdo z jejich "rodiny" potřeboval okamžitou pomoc.
+                </p>
+
+                <p style="font-size: 1.1rem; color: var(--primary); font-weight: bold; border-left: 3px solid var(--primary); padding-left: 15px;">
+                    A co udělal náš slavný ochránce 1007? <br>Ani se nehnul.
+                </p>
+
+                <p>
+                    Místo toho, aby letěl zachránit parťáka, stál u mého okýnka a dál řešil pokutu. Chápete to? Přednější mu bylo vytáhnout ze mě pár stovek do městské kasy, než zachránit život policajta.
+                </p>
+
+                <p>
+                    <em>A teď se zamyslete:</em><br>
+                    Jestli jsou schopní nechat ve štychu vlastního člověka jen proto, aby vybrali pokutu... myslíte si, že ochrání VÁS?<br>
+                    Až vás někdo přepadne, až vám půjde o krk – myslíte, že přijedou? Nebo budou radši někde měřit rychlost a vybírat výpalné, protože to sype víc?
+                </p>
+
+                <p>
+                    Dneska mi to došlo. V tomhle městě jsme v tom sami. Policii nezajímá naše bezpečí, a už vůbec ne spravedlnost. Zajímá je jen to, aby na konci směny odevzdali balík peněz z pokut.
+                </p>
+
+                <p>
+                    <strong>Číslo 1007 mi dneska ukázalo pravou tvář systému.</strong> Není to policie. Je to jen ozbrojená úřednická četa.<br>
+                    Dávejte na sebe pozor sami, lidi. Na tyhle se spolehnout nedá.
+                </p>
+                <p style="color: var(--secondary); font-size: 0.9rem;">#LSPD #Realita #NechraniNas #JdeJimJenOPrachy #1007</p>
+
             </article>
 
             <article class="fade-in" style="margin-top: 80px; padding-top: 40px; border-top: 4px dashed var(--primary);">
@@ -435,4 +463,3 @@
     </script>
 </body>
 </html>
-
